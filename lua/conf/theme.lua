@@ -1,41 +1,10 @@
 local M = {}
 
-function M.config0()
-
-    require('nvim-treesitter.configs').setup {
-        -- A list of parser names, or "all"
-        ensure_installed = { "c", "lua", "rust", "go" },
-
-        -- Install parsers synchronously (only applied to `ensure_installed`)
-        sync_install = false,
-
-        -- List of parsers to ignore installing (for "all")
-        ignore_install = { "javascript" },
-
-        highlight = {
-            -- `false` will disable the whole extension
-            enable = true,
-
-            -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-            -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-            -- the name of the parser)
-            -- list of language that will be disabled
-            -- disable = { "c", "rust" },
-
-            -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-            -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-            -- Using this option may slow down your editor, and you may see some duplicate highlights.
-            -- Instead of true it can also be a list of languages
-            additional_vim_regex_highlighting = false,
-        },
-    }
-end
-
 function M.config()
     -- Lua
     require('onedark').setup  {
         -- Main options --
-        style = 'cool', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+        style = 'warmer', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
         transparent = true,  -- Show/hide background
         term_colors = true, -- Change terminal color as per the selected theme style
         ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
@@ -48,7 +17,7 @@ function M.config()
         -- You can configure multiple style with comma seperated, For e.g., keywords = 'italic,bold'
         code_style = {
             comments = 'italic',
-            keywords = 'none',
+            keywords = 'bold',
             functions = 'none',
             strings = 'none',
             variables = 'none'
@@ -85,7 +54,7 @@ function M.config1()
 end
 
 
-function M.config3()
+function M.config2()
     vim.opt.laststatus = 3
     vim.opt.fillchars:append({
         horiz = '━',
@@ -117,36 +86,6 @@ function M.config3()
 
     -- setup must be called before loading
     vim.cmd("colorscheme kanagawa")
-end
-
-function M.config4()
-
-    require('onenord').setup({
-        theme = "dark", -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
-        borders = true, -- Split window borders
-        fade_nc = false, -- Fade non-current windows, making them more distinguishable
-        -- Style that is applied to various groups: see `highlight-args` for options
-        styles = {
-            comments = "NONE",
-            strings = "NONE",
-            keywords = "NONE",
-            functions = "NONE",
-            variables = "NONE",
-            diagnostics = "underline",
-        },
-        disable = {
-            background = true, -- Disable setting the background color
-            cursorline = false, -- Disable the cursorline
-            eob_lines = true, -- Hide the end-of-buffer lines
-        },
-        -- Inverse highlight for different groups
-        inverse = {
-            match_paren = false,
-        },
-        custom_highlights = {}, -- Overwrite default highlight groups
-        custom_colors = {}, -- Overwrite default colors
-    })
-
 end
 
 return M
